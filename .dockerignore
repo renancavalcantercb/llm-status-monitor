@@ -17,6 +17,8 @@ env
 
 # Data and state files (will be mounted as volume)
 data/
+logs/
+*.log
 
 # IDE
 .vscode
@@ -25,7 +27,7 @@ data/
 *.swo
 
 # Documentation
-README.md
+# README.md - needed for pyproject.toml
 claudedocs/
 
 # Tests
