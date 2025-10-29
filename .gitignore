@@ -1,0 +1,29 @@
+# Environment and secrets
+.env
+
+# Application data
+data/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.py[cod]
+*$py.class
+.venv
+venv/
+env/
+
+# Logs
+*.log
+monitor.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

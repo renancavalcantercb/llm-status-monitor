@@ -1,0 +1,36 @@
+services:
+  llm-monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: llm-status-monitor
+    restart: unless-stopped
+    environment:
+      - DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL}
+      - CHECK_INTERVAL=${CHECK_INTERVAL:-300}
+    volumes:
+      # Persist state data
+      - ./data:/app/data
+    env_file:
+      - .env
+    # Optional: Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 64M
+    # Health check (optional)
+    healthcheck:
+      test: ["CMD", "python", "-c", "import os; exit(0 if os.path.exists('/app/data/state.json') else 1)"]
+      interval: 5m
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
