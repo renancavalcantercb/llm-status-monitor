@@ -17,6 +17,16 @@ env/
 # Logs
 *.log
 monitor.log
+logs/
+
+# Test coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Old backup files
+*_old.py
+monitor_old.py
 
 # IDE
 .vscode/
